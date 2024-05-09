@@ -1,5 +1,5 @@
 # Compiler
-CC = gfortran
+CC = ftn
 
 # Compiler flags
 CFLAGS = 
