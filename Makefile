@@ -8,7 +8,7 @@ CFLAGS =
 SRCS = MonteCarlo.f90
 
 # Object files
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.f90=.o)
 
 # Executable name
 TARGET = SoftwareRun
