@@ -1,5 +1,5 @@
 # Compiler
-CC = ftn
+CC = gfortran
 
 # Compiler flags
 CFLAGS = 
@@ -18,12 +18,12 @@ all: $(TARGET)
 
 # Rule to build the executable
 $(TARGET): $(OBJS)
-    $(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 # Rule to compile source files
 %.o: %.c
-    $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean rule
 clean:
-    rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS) $(TARGET)
