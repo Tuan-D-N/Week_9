@@ -21,7 +21,7 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 # Rule to compile source files
-%.o: %.c
+%.o: %.f90
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean rule
