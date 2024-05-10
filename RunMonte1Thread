@@ -8,4 +8,4 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=00:03:00
 
-./MonteCarlo1Thread.out
+srun ./MonteCarlo1Thread.out
