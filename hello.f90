@@ -12,6 +12,8 @@ program hello
    integer total   ! total number of MPI processes
    integer err     ! error code returned by MPI calls (not checked)
 
+   character(len=5) :: str
+
    ! initialise the MPI implementation
    call MPI_INIT(err)
 
@@ -21,7 +23,8 @@ program hello
    ! determine the rank of this MPI process in the MPI_COMM_WORLD communicator
    call MPI_COMM_RANK(MPI_COMM_WORLD, rank, err)
 
-   open(2, "HelloOut" // itoa(rank) // ".txt")
+   str = itoa(rank)
+   open(unit = 2, file= "HelloOut" // str // ".txt")
    ! print rank and size to standard output
    write(2,*) "Hello world from process ", rank, " of ", total, "!"
 

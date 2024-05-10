@@ -79,6 +79,8 @@ end module monteCarloInt
 program monte_carlo_integration
    use monteCarloInt
    implicit none
+   include "mpif.h"
+
    real, allocatable :: bounds(:)
    real :: exact = 0.80656718084400884701
    integer :: n, dim, index
@@ -91,6 +93,7 @@ program monte_carlo_integration
    integer rank    ! value corresponding to this MPI process
    integer total   ! total number of MPI processes
    integer err     ! error code returned by MPI calls (not checked)
+   character(len=10) :: str
 
    ! Set the seed values to the current time
    call date_and_time(values=seed)
@@ -106,7 +109,7 @@ program monte_carlo_integration
    dim = 3
 
 
-   include "mpif.h"
+
 
    ! initialise the MPI implementation
    call MPI_INIT(err)
@@ -124,8 +127,8 @@ program monte_carlo_integration
    call MPI_FINALIZE(err)
 
 
-
-   open(unit = 2, file = "MonteCarloOut"//itoa()//".dat")
+   str = itoa(rank)
+   open(unit = 2, file = "MonteCarloOut"//str//".dat")
    do index = 1, 28
       n = 2**index
       write(2, *) n, integrateND(bounds,n,dim), (exact-integrateND(bounds,n,dim))/exact
