@@ -155,7 +155,7 @@ program monte_carlo_integration
 
    call cpu_time(stopTime)
 
-   open(unit = 2, file = "MonteCarloOutMultithreadTimeBenchmark.dat",action='write',position='append')
+   open(unit = 20, file = "MonteCarloOutMultithreadTimeBenchmark.dat",action='write',position='append')
    write(20,*) stopTime-startTime
 
 end program monte_carlo_integration
