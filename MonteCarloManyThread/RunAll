@@ -1,0 +1,6 @@
+sbatch Run1
+sbatch Run2
+sbatch Run4
+sbatch Run8
+sbatch Run16
+sbatch Run32
