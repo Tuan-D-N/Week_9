@@ -1,0 +1,13 @@
+
+#!/bin/bash -l
+
+#SBATCH --job-name=submit_monitor
+#SBATCH --account=coursesuwashpc
+#SBATCH --partition=work
+#SBATCH --ntasks=16
+#SBATCH --ntasks-per-node=16
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:03:00
+
+srun -n 16 ./MonteCarloManyThread.out
+      
