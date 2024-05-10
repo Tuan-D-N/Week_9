@@ -5,7 +5,7 @@ CC = ftn
 CFLAGS = 
 
 # Source files
-SRCS = MonteCarlo1Thread.f90
+SRCS = MonteCarlo1Thread.f90 MonteCarloManyThread.f90 hello.f90
 
 # Object files
 TARGET = $(SRCS:.f90=.out)
