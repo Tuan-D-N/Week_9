@@ -127,8 +127,8 @@ program monte_carlo_integration
 
 
    open(unit = 2, file = "MonteCarloOutMultithread.dat")
-   do index = 1, 28
-      n = 2**index/total
+   do index = 5, 28
+      n = ceiling(2**index/total)
 
       send_buff = integrateND(bounds,n,dim)
       call MPI_REDUCE(send_buff, recv_buff, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD, err)
