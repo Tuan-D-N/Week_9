@@ -93,7 +93,7 @@ program monte_carlo_integration
    integer rank    ! value corresponding to this MPI process
    integer total   ! total number of MPI processes
    integer err     ! error code returned by MPI calls (not checked)
-   character(len=10) :: str
+   character(len=1024) :: fileName
 
    ! Set the seed values to the current time
    call date_and_time(values=seed)
@@ -127,8 +127,8 @@ program monte_carlo_integration
    call MPI_FINALIZE(err)
 
 
-   str = itoa(rank)
-   open(unit = 2, file = "MonteCarloOut"//str//".dat")
+   write (filename, "(A13,I0.3,A4)") "MonteCarloOut", rank,".dat"
+   open(unit = 2, file = filename)
    do index = 1, 28
       n = 2**index
       write(2, *) n, integrateND(bounds,n,dim), (exact-integrateND(bounds,n,dim))/exact
@@ -148,10 +148,3 @@ program monte_carlo_integration
 
 end program monte_carlo_integration
 
-function itoa(i) result(res)
-   character(:),allocatable :: res
-   integer,intent(in) :: i
-   character(range(i)+2) :: tmp
-   write(tmp,'(i0)') i
-   res = trim(tmp)
-end function
