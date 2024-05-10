@@ -16,7 +16,7 @@ all: $(TARGET)
 
 
 %.out: %.f90
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 # Clean rule
 clean:
