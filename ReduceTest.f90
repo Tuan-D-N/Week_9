@@ -3,8 +3,6 @@ program reduceTest
    include "mpif.h"
    integer rank, total, err
 
-   integer, parameter :: tag = 0     ! tag for MPI messages (set to 0 and not used)
-   integer :: message                ! the message
 
    integer :: send_buff(1), recv_buff(1)
 

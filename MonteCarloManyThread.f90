@@ -93,7 +93,8 @@ program monte_carlo_integration
    integer rank    ! value corresponding to this MPI process
    integer total   ! total number of MPI processes
    integer err     ! error code returned by MPI calls (not checked)
-   character(len=1024) :: fileName
+
+   real :: send_buff(1), recv_buff(1)
 
    ! Set the seed values to the current time
    call date_and_time(values=seed)
@@ -121,17 +122,25 @@ program monte_carlo_integration
    call MPI_COMM_RANK(MPI_COMM_WORLD, rank, err)
 
    ! print rank and size to standard output
-   print*, "Hello world from process ", rank, " of ", total, "!"
 
    ! finalise the MPI implementation
    call MPI_FINALIZE(err)
 
 
-   write (filename, "(A13,I0.3,A4)") "MonteCarloOut", rank,".dat"
-   open(unit = 2, file = filename)
+   open(unit = 2, file = "MonteCarloOutMultithread.dat")
    do index = 1, 28
-      n = 2**index
-      write(2, *) n, integrateND(bounds,n,dim), (exact-integrateND(bounds,n,dim))/exact
+      n = 2**index/total
+
+      send_buff = integrateND(bounds,n,dim)
+      call MPI_REDUCE(send_buff, recv_buff, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD, err)
+
+      print*, "rank: ", rank, "send_buff: ", send_buff, "n ", n
+      recv_buff(1) = recv_buff(1) / total
+
+      if ( rank == 0 ) then
+         write(2, *) n, recv_buff(1), (exact-recv_buff(1))/exact
+         print *, "receive: ", recv_buff, "error: ", (exact-recv_buff(1))/exact
+      end if
 
    end do
 
