@@ -5,7 +5,7 @@ CC = ftn
 CFLAGS = 
 
 # Source files
-SRCS = MonteCarlo.f90
+SRCS = MonteCarlo1Thread.f90
 
 # Object files
 OBJS = $(SRCS:.f90=.o)
