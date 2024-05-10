@@ -8,7 +8,7 @@ CFLAGS =
 SRCS = MonteCarlo1Thread.f90
 
 # Object files
-OBJS = $(SRCS:.f90=.o)
+TARGET = $(SRCS:.f90=.out)
 
 # Executable name
 TARGET = SoftwareRun
@@ -16,12 +16,8 @@ TARGET = SoftwareRun
 # Default rule
 all: $(TARGET)
 
-# Rule to build the executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
 
-# Rule to compile source files
-%.o: %.f90
+%.out: %.f90
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean rule
