@@ -125,7 +125,7 @@ program monte_carlo_integration
 
 
 
-   open(unit = 2, file = "MonteCarloOut"//itoa(total)//".dat")
+   open(unit = 2, file = "MonteCarloOut"//itoa()//".dat")
    do index = 1, 28
       n = 2**index
       write(2, *) n, integrateND(bounds,n,dim), (exact-integrateND(bounds,n,dim))/exact

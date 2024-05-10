@@ -21,8 +21,9 @@ program hello
    ! determine the rank of this MPI process in the MPI_COMM_WORLD communicator
    call MPI_COMM_RANK(MPI_COMM_WORLD, rank, err)
 
+   open(2, "HelloOut" // itoa(rank) // ".txt")
    ! print rank and size to standard output
-   print*, "Hello world from process ", rank, " of ", total, "!"
+   write(2,*) "Hello world from process ", rank, " of ", total, "!"
 
    ! finalise the MPI implementation
    call MPI_FINALIZE(err)
