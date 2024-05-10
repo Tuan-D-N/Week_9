@@ -14,6 +14,7 @@ for i in range(6):
 #SBATCH --ntasks-per-node={threads}
 #SBATCH --cpus-per-task=1
 #SBATCH --time=00:03:00
+#SBATCH --output=slurm-{threads}.out
 
 srun -n {threads} ./MonteCarloManyThread.out
       """)

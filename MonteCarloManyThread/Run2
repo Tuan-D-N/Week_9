@@ -7,6 +7,7 @@
 #SBATCH --ntasks-per-node=2
 #SBATCH --cpus-per-task=1
 #SBATCH --time=00:03:00
+#SBATCH --output=slurm-2.out
 
 srun -n 2 ./MonteCarloManyThread.out
       
