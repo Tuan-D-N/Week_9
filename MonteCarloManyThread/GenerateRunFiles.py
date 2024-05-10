@@ -3,7 +3,7 @@
 for i in range(6):
     threads = 2**i
     fileName = f'Run{threads}'
-    file = open(fileName, 'w')
+    file = open(fileName, 'w', encoding='utf-8')
 
     file.write(f"""#!/bin/bash -l
 

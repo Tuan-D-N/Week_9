@@ -139,7 +139,7 @@ program monte_carlo_integration
       recv_buff(1) = recv_buff(1) / total
 
       if ( rank == 0 ) then
-         write(2, *) n, recv_buff(1), (exact-recv_buff(1))/exact
+         write(2, *) index, n, recv_buff(1), (exact-recv_buff(1))/exact
          print *, "index:" ,index, "receive: ", recv_buff, "error: ", (exact-recv_buff(1))/exact, "n: ", n
       end if
 
