@@ -96,6 +96,8 @@ program monte_carlo_integration
 
    real :: send_buff(1), recv_buff(1)
 
+   character(len=1024) :: filename
+
    ! Set the seed values to the current time
    call date_and_time(values=seed)
 
@@ -125,8 +127,8 @@ program monte_carlo_integration
 
    ! finalise the MPI implementation
 
-
-   open(unit = 2, file = "MonteCarloOutMultithread.dat")
+   write (filename, "(A24,I0.3,A4)") "MonteCarloOutMultithread", total, ".txt"
+   open(unit = 2, file = filename)
    do index = 5, 28
       n = ceiling(2**index/real(total))
 
@@ -153,7 +155,8 @@ program monte_carlo_integration
 
    call cpu_time(stopTime)
 
-   write(2,*) stopTime-startTime
+   open(unit = 2, file = "MonteCarloOutMultithreadTimeBenchmark.dat",action='write',position='append')
+   write(20,*) stopTime-startTime
 
 end program monte_carlo_integration
 
