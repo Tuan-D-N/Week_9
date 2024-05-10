@@ -11,7 +11,7 @@ SRCS = MonteCarlo1Thread.f90
 TARGET = $(SRCS:.f90=.out)
 
 # Executable name
-TARGET = SoftwareRun
+TARGET = MonteCarlo1Thread
 
 # Default rule
 all: $(TARGET)
