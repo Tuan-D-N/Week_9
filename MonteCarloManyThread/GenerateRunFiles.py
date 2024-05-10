@@ -5,8 +5,7 @@ for i in range(6):
     fileName = f'Run{threads}'
     file = open(fileName, 'w')
 
-    file.write(f"""
-#!/bin/bash -l
+    file.write(f"""#!/bin/bash -l
 
 #SBATCH --job-name=submit_monitor
 #SBATCH --account=coursesuwashpc
