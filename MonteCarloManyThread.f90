@@ -124,7 +124,6 @@ program monte_carlo_integration
    ! print rank and size to standard output
 
    ! finalise the MPI implementation
-   call MPI_FINALIZE(err)
 
 
    open(unit = 2, file = "MonteCarloOutMultithread.dat")
@@ -149,6 +148,7 @@ program monte_carlo_integration
 
 
 
+   call MPI_FINALIZE(err)
 
 
    call cpu_time(stopTime)
