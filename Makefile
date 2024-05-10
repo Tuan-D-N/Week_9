@@ -10,8 +10,6 @@ SRCS = MonteCarlo1Thread.f90
 # Object files
 TARGET = $(SRCS:.f90=.out)
 
-# Executable name
-TARGET = MonteCarlo1Thread
 
 # Default rule
 all: $(TARGET)
