@@ -31,7 +31,7 @@ contains
 
    real function integrateND(bounds,n,dim)
       integer, intent(in) :: n, dim
-      integer :: i, ix
+      integer :: i
       real, intent(in) :: bounds(:) !Stored in pairs
       real,allocatable :: a(:), b(:)
       real, allocatable :: x(:)
@@ -78,6 +78,9 @@ program monte_carlo_integration
    real, allocatable :: bounds(:)
    real :: exact = 0.80656718084400884701
    integer :: n, dim, index
+   real:: startTime, stopTime
+
+   call cpu_time(startTime)
 
    allocate(bounds(6))
    bounds = [0,2,0,3,0,4]
@@ -87,9 +90,11 @@ program monte_carlo_integration
    do index = 1, 28
 
       n = 2**index
-      print *, n
       write(2, *) n, integrateND(bounds,n,dim), (exact-integrateND(bounds,n,dim))/exact
    end do
 
+   call cpu_time(stopTime)
+
+   write(2,*) stopTime-startTime
 
 end program monte_carlo_integration
