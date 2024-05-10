@@ -138,7 +138,7 @@ program monte_carlo_integration
 
       if ( rank == 0 ) then
          write(2, *) n, recv_buff(1), (exact-recv_buff(1))/exact
-         print *"index:" ,index, "receive: ", recv_buff, "error: ", (exact-recv_buff(1))/exact, "n: ", n
+         print *, "index:" ,index, "receive: ", recv_buff, "error: ", (exact-recv_buff(1))/exact, "n: ", n
       end if
 
    end do
