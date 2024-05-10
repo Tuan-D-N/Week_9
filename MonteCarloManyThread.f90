@@ -133,12 +133,12 @@ program monte_carlo_integration
       send_buff = integrateND(bounds,n,dim)
       call MPI_REDUCE(send_buff, recv_buff, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD, err)
 
-      print*, "rank: ", rank, "send_buff: ", send_buff, "n ", n
+      print*, "rank: ", rank, "send_buff: ", send_buff, "n ", n, "index:", index
       recv_buff(1) = recv_buff(1) / total
 
       if ( rank == 0 ) then
          write(2, *) n, recv_buff(1), (exact-recv_buff(1))/exact
-         print *"index:" ,index, "receive: ", recv_buff, "error: ", (exact-recv_buff(1))/exact
+         print *"index:" ,index, "receive: ", recv_buff, "error: ", (exact-recv_buff(1))/exact, "n: ", n
       end if
 
    end do
