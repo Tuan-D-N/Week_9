@@ -8,3 +8,4 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=00:01:00
 
+./SoftwareRun
